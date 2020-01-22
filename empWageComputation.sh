@@ -1,26 +1,29 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage"
+#CONSTANTS
 WAGE_PER_HOURS=20
+HOURS_IN_MONTH=100
 
-PartTime=1
-FullTime=2
-TotalSalary=0
-WorkingDays=20
-for ((i=1; i<=$WorkingDays; i++ ))
+#VARIABLES
+totalHours=0
+workingDays=0
+while [[ $totalHours -lt $HOURS_IN_MONTH && $workingDays -lt $WAGE_PER_HOURS  ]]
 do
 	Employee_check=$((RANDOM%3))
 		case $Employee_check in
-		$PartTime)
+		0)
 				Employee_Hours=4
-				
-			;;
-		$FullTime)
+				((workingDays++))			
+				;;
+		1)
 				Employee_Hours=8
-			;;
-		*)
+				((workingDays++))
+				;;
+		2)
 				Employee_Hours=0
-esac
-
-## calculating employee part time and full time wages##  
-Wages_for_Month=$(($Employee_Hours * $WAGE_PER_HOURS))
-done
+				;;
+		esac
+		#calculating total employee hours#  
+		totalHours=$((totalHours + Employee_Hours))
+done 
+totalSalary=$((totalHours * WAGE_PER_HOURS))
