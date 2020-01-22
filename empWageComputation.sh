@@ -1,4 +1,4 @@
-#!/bin/bash -x 
+#!/bin/bash -x
 echo "Welcome to Employee Wage"
 WAGE_PER_HOURS=20
 HOURS_IN_MONTH=100
@@ -6,6 +6,7 @@ HOURS_IN_MONTH=100
 #VARIABLES
 totalHours=0
 workingDays=0
+declare -A EmployeeDailyWages 
 function  getEmployeeWorkingHours()
 {
 		case $1 in
@@ -43,9 +44,10 @@ do
 		
 		#calculating total salary#
 		totalSalary=$((totalSalary + ${EmployeeDailyWages[$workingDays]} ))
-		echo  "days = $workingDays "
+		#echo  "days = $workingDays "
 		((workingDays++))
 done 
 
+echo "Days :${!EmployeeDailyWages[@]}"
 echo "Employee Daily Wages:${EmployeeDailyWages[@]}"
 echo "Employee Monthly Salary:$totalSalary"
