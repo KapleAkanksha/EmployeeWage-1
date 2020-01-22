@@ -1,29 +1,38 @@
 #!/bin/bash -x
 echo "Welcome to Employee Wage"
-#CONSTANTS
 WAGE_PER_HOURS=20
 HOURS_IN_MONTH=100
 
 #VARIABLES
 totalHours=0
 workingDays=0
-while [[ $totalHours -lt $HOURS_IN_MONTH && $workingDays -lt $WAGE_PER_HOURS  ]]
-do
-	Employee_check=$((RANDOM%3))
-		case $Employee_check in
+function  getEmployeeWorkingHours()
+{		
+		case $1 in
 		0)
-				Employee_Hours=4
+				Employee_Working_Hours=4
 				((workingDays++))			
 				;;
 		1)
-				Employee_Hours=8
+				Employee_Working_Hours=8
 				((workingDays++))
 				;;
 		2)
-				Employee_Hours=0
+				Employee_Working_Hours=0
 				;;
 		esac
-		#calculating total employee hours#  
-		totalHours=$((totalHours + Employee_Hours))
+		echo $Employee_Working_Hours
+
+}
+
+while [[ $totalHours -lt $HOURS_IN_MONTH && $workingDays -lt $WAGE_PER_HOURS  ]]
+do
+		#((workingDays++))
+		#using function  generate random number#
+		Employee_Working_Hours=$( getEmployeeWorkingHours $((RANDOM%3)) )
+		#calculating total employees working hours#  
+		totalHours=$((totalHours + Employee_Working_Hours))
 done 
 totalSalary=$((totalHours * WAGE_PER_HOURS))
+
+
