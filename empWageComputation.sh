@@ -26,7 +26,6 @@ function  getEmployeeWorkingHours()
 #fuction to calculate daily wages
 function getcalculateDailyWage()
 {
-	local WorkHrs=$1
 	EmployeeWages=$(($Employee_Working_Hours * $WAGE_PER_HOURS))
 	echo $EmployeeWages
 
