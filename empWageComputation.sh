@@ -27,7 +27,6 @@ function  getEmployeeWorkingHours()
 
 while [[ $totalHours -lt $HOURS_IN_MONTH && $workingDays -lt $WAGE_PER_HOURS  ]]
 do
-		#((workingDays++))
 		#using function  generate random number#
 		Employee_Working_Hours=$( getEmployeeWorkingHours $((RANDOM%3)) )
 		#calculating total employees working hours#  
